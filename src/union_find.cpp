@@ -103,16 +103,16 @@ namespace cheetah
         if (p_id == q_id)
           return;
 
-      if (size[p_id] < size[q_id])
-      {
-        id[p_id] = q_id;
-        size[q_id] += size[p_id];
-      }
-      else
-      {
-        id[q_id] = p_id;
-        size[p_id] += size[q_id];
-      }
+        if (size[p_id] < size[q_id])
+        {
+          id[p_id] = q_id;
+          size[q_id] += size[p_id];
+        }
+        else
+        {
+          id[q_id] = p_id;
+          size[p_id] += size[q_id];
+        }
 
         --n;
       }
