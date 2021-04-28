@@ -31,5 +31,12 @@ namespace cheetah
         edges.emplace_back(from, to);
       }
     }
+
+    void parse_unweighted_graph(const char* filename,
+                                std::vector<std::pair<int, int>>& edges,
+                                int& n)
+    {
+      parse_union_find_data(filename, edges, n);
+    }
   }
 }

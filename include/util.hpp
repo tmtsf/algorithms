@@ -9,5 +9,9 @@ namespace cheetah
     void parse_union_find_data(const char* filename,
                                std::vector<std::pair<int, int>>& edges,
                                int& n);
+
+    void parse_unweighted_graph(const char* filename,
+                            std::vector<std::pair<int, int>>& edges,
+                            int& n);
   }
 }
