@@ -10,7 +10,7 @@ TEST_DIR       := $(BUILD)/tests
 TARGET         := program
 TEST_TARGET    := run_tests
 
-MAIN_CPP_NAME  := beagle.cpp
+MAIN_CPP_NAME  := main.cpp
 SRC_DIR        := src
 SRC            := $(wildcard $(SRC_DIR)/*.cpp)
 NON_MAIN_SRC   := $(filter-out $(SRC_DIR)/$(MAIN_CPP_NAME), $(SRC))
