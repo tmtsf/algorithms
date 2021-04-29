@@ -51,6 +51,8 @@ namespace cheetah
     };
   }
 
+  bool is_dag(const graph_ptr_t& g);
+
   std::vector<int> topological_sort(const cheetah::graph_ptr_t& g);
 
   void reverse_post_order(const cheetah::graph_ptr_t& g,
