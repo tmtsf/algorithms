@@ -21,7 +21,7 @@ namespace cheetah
       for (int i=0; i<n; ++i)
       {
         for (int j=0; j<n; ++j)
-          std::cout << shortest_paths[i][j] << "    ";
+          printf("%1.2f    ", shortest_paths[i][j]);
 
         std::cout << "\n";
       }

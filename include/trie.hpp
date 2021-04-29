@@ -138,30 +138,32 @@ namespace cheetah
                  const std::string& prefix,
                  const std::string& pattern,
                  std::vector<std::string>& v) const
-  {
-    if (!tn)
-      return;
-
-    if (prefix.size() == pattern.size())
     {
-      if (tn->value)
-      {
-        v.push_back(prefix);
-      }
-      else
-      {
+      if (!tn)
         return;
+
+      if (prefix.size() == pattern.size())
+      {
+        if (tn->value)
+        {
+          v.push_back(prefix);
+        }
+        else
+        {
+          return;
+        }
+      }
+
+      const char& c = pattern[prefix.size()];
+      for (int i=0; i<node::R; ++i)
+      {
+        char next = i;
+        if (c == '.' || c == next)
+        {
+          collect(tn->children[i], prefix+next, pattern, v);
+        }
       }
     }
-
-    const char& c = pattern[prefix.size()];
-    for (int i=0; i<node::R; ++i)
-    {
-      char next = i;
-      if (c == '.' || c == next)
-        collect(tn->children[i], prefix+next, pattern, v);
-    }
-  }
 
   public:
     std::string longest_prefix(const std::string& s) const
