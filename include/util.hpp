@@ -30,5 +30,10 @@ namespace cheetah
         return std::get<2>(e1) > std::get<2>(e2);
       }
     };
+
+
+    void validate_directed_graph(const graph_ptr_t& g);
+
+    void validate_undirected_graph(const graph_ptr_t& g);
   }
 }

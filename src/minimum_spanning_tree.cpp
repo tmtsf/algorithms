@@ -55,7 +55,7 @@ namespace cheetah
 
   std::vector<weighted_edge> lazy_prim_mst(const graph_ptr_t& g)
   {
-    // util::validate_undirected_graph(g);
+    util::validate_undirected_graph(g);
 
     int n = g->number_of_vertices();
     const auto& adj_list = g->adjacency_list();
@@ -86,7 +86,7 @@ namespace cheetah
 
   std::vector<weighted_edge> eager_prim_mst(const graph_ptr_t& g)
   {
-    // util::validate_undirected_graph(g);
+    util::validate_undirected_graph(g);
 
     int n = g->number_of_vertices();
     const auto& adj_list = g->adjacency_list();
@@ -109,7 +109,7 @@ namespace cheetah
 
   std::vector<weighted_edge> kruskal_mst(const graph_ptr_t& g)
   {
-    // util::validate_undirected_graph(g);
+    util::validate_undirected_graph(g);
 
     int n = g->number_of_vertices();
     const auto& adj_list = g->adjacency_list();

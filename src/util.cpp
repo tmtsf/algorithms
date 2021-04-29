@@ -1,4 +1,5 @@
 #include "util.hpp"
+#include "graph.hpp"
 
 namespace cheetah
 {
@@ -86,6 +87,26 @@ namespace cheetah
         double weight;
         iss >> from >> to >> weight;
         edges.emplace_back(std::make_tuple(from, to, weight));
+      }
+    }
+
+    void validate_directed_graph(const graph_ptr_t& g)
+    {
+      auto p = dynamic_cast<cheetah::mixins::directed*>(g.get());
+      if (!p)
+      {
+        std::cout << "Can only generate a shortest path tree for a directed graph!\n";
+        exit(1);
+      }
+    }
+
+    void validate_undirected_graph(const graph_ptr_t& g)
+    {
+      auto p = dynamic_cast<cheetah::mixins::undirected*>(g.get());
+      if (!p)
+      {
+        std::cout << "Can only generate a minimum spanning tree for an undirected graph!\n";
+        exit(1);
       }
     }
   }
