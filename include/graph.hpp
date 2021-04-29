@@ -80,4 +80,5 @@ namespace cheetah
 
   std::vector<weighted_edge> kruskal_mst(const graph_ptr_t& g);
 
+  cheetah::dbl_mat_t floyd_warshall_shortest_paths(const cheetah::graph_ptr_t& g);
 }

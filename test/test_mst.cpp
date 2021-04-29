@@ -11,13 +11,11 @@ namespace cheetah
       std::cout << "**********************************************\n";
       int n;
       std::vector<std::tuple<int, int, double>> edges;
-      util::parse_weighted_graph("data/medium_edge_weighted_graph.txt", edges, n);
+      util::parse_weighted_graph("data/tiny_edge_weighted_graph.txt", edges, n);
 
       graph_ptr_t g = cheetah::graph::make_undirected_graph(n);
       for (const auto& p : edges)
         g->add_edge(std::get<0>(p), std::get<1>(p), std::get<2>(p));
-
-      std::cout << "All good!\n";
 
       std::vector<cheetah::weighted_edge> mst = cheetah::lazy_prim_mst(g);
       std::sort(mst.begin(),
@@ -38,13 +36,11 @@ namespace cheetah
       std::cout << "**********************************************\n";
       int n;
       std::vector<std::tuple<int, int, double>> edges;
-      util::parse_weighted_graph("data/medium_edge_weighted_graph.txt", edges, n);
+      util::parse_weighted_graph("data/tiny_edge_weighted_graph.txt", edges, n);
 
       graph_ptr_t g = cheetah::graph::make_undirected_graph(n);
       for (const auto& p : edges)
         g->add_edge(std::get<0>(p), std::get<1>(p), std::get<2>(p));
-
-      std::cout << "All good!\n";
 
       std::vector<cheetah::weighted_edge> mst = cheetah::eager_prim_mst(g);
       std::sort(mst.begin(),
@@ -65,13 +61,11 @@ namespace cheetah
       std::cout << "**********************************************\n";
       int n;
       std::vector<std::tuple<int, int, double>> edges;
-      util::parse_weighted_graph("data/medium_edge_weighted_graph.txt", edges, n);
+      util::parse_weighted_graph("data/tiny_edge_weighted_graph.txt", edges, n);
 
       graph_ptr_t g = cheetah::graph::make_undirected_graph(n);
       for (const auto& p : edges)
         g->add_edge(std::get<0>(p), std::get<1>(p), std::get<2>(p));
-
-      std::cout << "All good!\n";
 
       std::vector<cheetah::weighted_edge> mst = cheetah::kruskal_mst(g);
       std::sort(mst.begin(),
