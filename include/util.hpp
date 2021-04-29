@@ -11,7 +11,11 @@ namespace cheetah
                                int& n);
 
     void parse_unweighted_graph(const char* filename,
-                            std::vector<std::pair<int, int>>& edges,
-                            int& n);
+                                std::vector<std::pair<int, int>>& edges,
+                                int& n);
+
+    void parse_weighted_graph(const char* filename,
+                              std::vector<weighted_edge>& edges,
+                              int& n);
   }
 }
