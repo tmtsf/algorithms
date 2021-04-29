@@ -61,4 +61,23 @@ namespace cheetah
   cheetah::int_vec_coll_t kosaraju_strong_components(const cheetah::graph_ptr_t& g);
 
   cheetah::int_vec_coll_t tarjan_strong_components(const cheetah::graph_ptr_t& g);
+
+  std::vector<weighted_edge> lazy_dijkstra_spt(const graph_ptr_t& g,
+                                               int source);
+
+  std::vector<weighted_edge> eager_dijkstra_spt(const graph_ptr_t& g,
+                                                int source);
+
+  std::vector<weighted_edge> acyclic_spt(const graph_ptr_t& g,
+                                         int source);
+
+  std::vector<weighted_edge> bellman_ford_spt(const graph_ptr_t& g,
+                                              int source);
+
+  std::vector<weighted_edge> lazy_prim_mst(const graph_ptr_t& g);
+
+  std::vector<weighted_edge> eager_prim_mst(const graph_ptr_t& g);
+
+  std::vector<weighted_edge> kruskal_mst(const graph_ptr_t& g);
+
 }
