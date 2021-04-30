@@ -34,7 +34,7 @@ namespace cheetah
       std::cout << "**********************************************\n";
       int n;
       std::vector<std::pair<int, int>> edges;
-      cheetah::util::parse_unweighted_graph("data/tiny_directed_graph.txt", edges, n);
+      cheetah::util::parse_unweighted_graph("data/medium_edge_weighted_digraph.txt", edges, n);
 
       graph_ptr_t g = cheetah::graph::make_directed_graph(n);
       for (const auto& p : edges)
@@ -56,7 +56,7 @@ namespace cheetah
       std::cout << "**********************************************\n";
       int n;
       std::vector<std::pair<int, int>> edges;
-      cheetah::util::parse_unweighted_graph("data/tiny_directed_graph.txt", edges, n);
+      cheetah::util::parse_unweighted_graph("data/medium_edge_weighted_digraph.txt", edges, n);
 
       graph_ptr_t g = cheetah::graph::make_directed_graph(n);
       for (const auto& p : edges)
