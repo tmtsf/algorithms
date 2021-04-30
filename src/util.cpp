@@ -8,7 +8,7 @@ namespace cheetah
     namespace
     {
       std::vector<std::string> split(const std::string& str,
-                                    const std::string& delim)
+                                     const std::string& delim)
       {
         std::vector<std::string> tokens;
         std::size_t start = 0;
@@ -185,7 +185,7 @@ namespace cheetah
       auto p = dynamic_cast<cheetah::mixins::directed*>(g.get());
       if (!p)
       {
-        std::cout << "Can only generate a shortest path tree for a directed graph!\n";
+        std::cout << "The supplied graph is not a directed graph!\n";
         exit(1);
       }
     }
@@ -195,7 +195,7 @@ namespace cheetah
       auto p = dynamic_cast<cheetah::mixins::undirected*>(g.get());
       if (!p)
       {
-        std::cout << "Can only generate a minimum spanning tree for an undirected graph!\n";
+        std::cout << "The supplied graph is not an undirected graph!\n";
         exit(1);
       }
     }
