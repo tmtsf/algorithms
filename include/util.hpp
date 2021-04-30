@@ -14,9 +14,21 @@ namespace cheetah
                                 std::vector<std::pair<int, int>>& edges,
                                 int& n);
 
+    void parse_unweighted_graph(const char* filename,
+                                const std::string& delim,
+                                std::vector<std::pair<int, int>>& edges,
+                                std::unordered_map<std::string, int>& lookup,
+                                std::vector<std::string>& symbols);
+
     void parse_weighted_graph(const char* filename,
                               std::vector<weighted_edge>& edges,
                               int& n);
+
+    void parse_weighted_graph(const char* filename,
+                              const std::string& delim,
+                              std::vector<weighted_edge>& edges,
+                              std::unordered_map<std::string, int>& lookup,
+                              std::vector<std::string>& symbols);
 
     template<typename T>
     struct greater;

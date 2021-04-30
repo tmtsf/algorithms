@@ -27,5 +27,50 @@ namespace cheetah
       }
       std::cout << "**********************************************\n\n";
     }
+
+
+    TEST(test_kosaraju_strong_components, Components)
+    {
+      std::cout << "**********************************************\n";
+      int n;
+      std::vector<std::pair<int, int>> edges;
+      cheetah::util::parse_unweighted_graph("data/tiny_directed_graph.txt", edges, n);
+
+      graph_ptr_t g = cheetah::graph::make_directed_graph(n);
+      for (const auto& p : edges)
+        g->add_edge(p.first, p.second);
+
+      std::vector<std::vector<int>> scc = cheetah::kosaraju_strong_components(g);
+      for (std::size_t i=0; i<scc.size(); ++i)
+      {
+        std::cout << i << ": ";
+        for (const auto& vertex : scc[i])
+          std::cout << vertex << " ";
+        std::cout << "\n";
+      }
+      std::cout << "**********************************************\n\n";
+    }
+
+    TEST(test_tarjan_strong_components, Components)
+    {
+      std::cout << "**********************************************\n";
+      int n;
+      std::vector<std::pair<int, int>> edges;
+      cheetah::util::parse_unweighted_graph("data/tiny_directed_graph.txt", edges, n);
+
+      graph_ptr_t g = cheetah::graph::make_directed_graph(n);
+      for (const auto& p : edges)
+        g->add_edge(p.first, p.second);
+
+      std::vector<std::vector<int>> scc = cheetah::tarjan_strong_components(g);
+      for (std::size_t i=0; i<scc.size(); ++i)
+      {
+        std::cout << i << ": ";
+        for (const auto& vertex : scc[i])
+          std::cout << vertex << " ";
+        std::cout << "\n";
+      }
+      std::cout << "**********************************************\n\n";
+    }
   }
 }
