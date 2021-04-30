@@ -5,10 +5,11 @@ namespace cheetah
 {
   namespace test
   {
+    // This trie test fails with GTest suite, but fine when tested alone
+    // Possibly because the use of the optional feature from c++17
+
     TEST(test_trie, Modification)
     {
-      // Test fails with GTest suite, but fine when tested alone
-
       // std::vector<std::string> v = {"she", "sells", "sea", "shells", "by", "the", "sea", "shore"};
 
       // cheetah::trie<int> m;
