@@ -26,4 +26,17 @@ namespace cheetah
   {
     return n;
   }
+
+  void graph::print(void) const
+  {
+    for (int i = 0; i < n; ++i)
+    {
+      std::cout << i << ": ";
+      for (const auto& edge : adjacency_list()[i])
+        std::cout << edge.vertex << "  ";
+      std::cout << "\n";
+    }
+
+    std::cout << "\n";
+  }
 }

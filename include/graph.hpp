@@ -23,6 +23,7 @@ namespace cheetah
     virtual ~graph(void) = default;
   public:
     int number_of_vertices(void) const;
+    void print(void) const;
   public:
     virtual const std::string& description(void) const = 0;
     virtual const std::vector<cheetah::bag<edge>>& adjacency_list(void) const= 0;
@@ -58,9 +59,9 @@ namespace cheetah
   void reverse_post_order(const cheetah::graph_ptr_t& g,
                           cheetah::stack<int>& s);
 
-  cheetah::int_vec_coll_t undirected_graph_connected_components(const cheetah::graph_ptr_t& g);
+  cheetah::int_vec_t undirected_graph_connected_components(const cheetah::graph_ptr_t& g);
 
-  cheetah::int_vec_coll_t kosaraju_strong_components(const cheetah::graph_ptr_t& g);
+  cheetah::int_vec_t kosaraju_strong_components(const cheetah::graph_ptr_t& g);
 
   cheetah::int_vec_coll_t tarjan_strong_components(const cheetah::graph_ptr_t& g);
 
@@ -83,4 +84,8 @@ namespace cheetah
   std::vector<weighted_edge> kruskal_mst(const graph_ptr_t& g);
 
   cheetah::dbl_mat_t floyd_warshall_shortest_paths(const cheetah::graph_ptr_t& g);
+
+  cheetah::int_vec_coll_t single_source_paths_dfs(const cheetah::graph_ptr_t& g, int source);
+
+  cheetah::int_vec_coll_t single_source_paths_bfs(const cheetah::graph_ptr_t& g, int source);
 }

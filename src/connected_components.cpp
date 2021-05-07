@@ -21,30 +21,24 @@ namespace cheetah
     }
   }
 
-  cheetah::int_vec_coll_t undirected_graph_connected_components(const graph_ptr_t& g)
+  cheetah::int_vec_t undirected_graph_connected_components(const graph_ptr_t& g)
   {
     const auto& adj_list = g->adjacency_list();
     int n = g->number_of_vertices();
     cheetah::bool_vec_t visited(n);
-    cheetah::int_vec_t component(n);
+    cheetah::int_vec_t components(n);
 
     int count = 0;
     for (int i=0; i<n; ++i)
     {
       if (!visited[i])
       {
-        connected_components_helper(adj_list, i, visited, component, count);
+        connected_components_helper(adj_list, i, visited, components, count);
         ++count;
       }
     }
 
-    cheetah::int_vec_coll_t result(count);
-    for (int i=0; i<component.size(); ++i)
-    {
-      result[component[i]].push_back(i);
-    }
-
-    return result;
+    return components;
   }
 
   namespace
@@ -65,7 +59,7 @@ namespace cheetah
     }
   }
 
-  cheetah::int_vec_coll_t kosaraju_strong_components(const graph_ptr_t& g)
+  cheetah::int_vec_t kosaraju_strong_components(const graph_ptr_t& g)
   {
     auto pd = dynamic_cast<cheetah::mixins::directed*>(g.get());
     graph_ptr_t rev_graph = pd->reverse();
@@ -89,13 +83,7 @@ namespace cheetah
       }
     }
 
-    cheetah::int_vec_coll_t results(count);
-    for (std::size_t i=0; i<components.size(); ++i)
-    {
-      results[components[i]].push_back(i);
-    }
-
-    return results;
+    return components;
   }
 
   namespace
