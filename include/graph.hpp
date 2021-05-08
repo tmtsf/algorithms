@@ -52,14 +52,20 @@ namespace cheetah
     };
   }
 
+  // Common graph algorithms
+  cheetah::int_vec_coll_t single_source_paths_dfs(const cheetah::graph_ptr_t& g,
+                                                  int source);
+
+  cheetah::int_vec_coll_t single_source_paths_bfs(const cheetah::graph_ptr_t& g,
+                                                  int source);
+
+  // Directed graph algorithms
   bool is_dag(const graph_ptr_t& g);
 
   std::vector<int> topological_sort(const cheetah::graph_ptr_t& g);
 
   void reverse_post_order(const cheetah::graph_ptr_t& g,
                           cheetah::stack<int>& s);
-
-  cheetah::int_vec_t undirected_graph_connected_components(const cheetah::graph_ptr_t& g);
 
   cheetah::int_vec_t kosaraju_strong_components(const cheetah::graph_ptr_t& g);
 
@@ -77,6 +83,9 @@ namespace cheetah
   std::vector<weighted_edge> bellman_ford_spt(const graph_ptr_t& g,
                                               int source);
 
+  // Undirected graph algorithms
+  cheetah::int_vec_t undirected_graph_connected_components(const cheetah::graph_ptr_t& g);
+
   std::vector<weighted_edge> lazy_prim_mst(const graph_ptr_t& g);
 
   std::vector<weighted_edge> eager_prim_mst(const graph_ptr_t& g);
@@ -85,12 +94,7 @@ namespace cheetah
 
   cheetah::dbl_mat_t floyd_warshall_shortest_paths(const cheetah::graph_ptr_t& g);
 
-  cheetah::int_vec_coll_t single_source_paths_dfs(const cheetah::graph_ptr_t& g,
-                                                  int source);
-
-  cheetah::int_vec_coll_t single_source_paths_bfs(const cheetah::graph_ptr_t& g,
-                                                  int source);
-
   bool is_acyclic_undirected_graph(const cheetah::graph_ptr_t& g);
+
   bool is_bipartite_undirected_graph(const cheetah::graph_ptr_t& g);
 }

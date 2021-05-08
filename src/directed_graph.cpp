@@ -46,7 +46,7 @@ namespace cheetah
       }
       virtual graph_ptr_t reverse(void) const
       {
-        graph_ptr_t rev_graph = std::make_shared<directed_graph>(number_of_vertices());
+        graph_ptr_t rev_graph = cheetah::graph::make_directed_graph(number_of_vertices());
         for (std::size_t i=0; i<adj_list.size(); ++i)
         {
           for (const auto& e : adj_list[i])
