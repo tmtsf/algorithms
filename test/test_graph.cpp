@@ -51,5 +51,24 @@ namespace cheetah
       }
       std::cout << "**********************************************\n\n";
     }
+
+    TEST(test_graph, DFSConnectivity)
+    {
+      std::cout << "**********************************************\n";
+      std::vector<std::pair<int, int>> edges;
+      int n;
+      cheetah::util::parse_unweighted_graph("data/tiny_digraph.txt", edges, n);
+
+      graph_ptr_t g = cheetah::graph::make_directed_graph(n);
+      for (const auto& p : edges)
+        g->add_edge(p.first, p.second);
+
+      cheetah::int_vec_t result = cheetah::single_source_connectivity(g, 2);
+      for (int v : result)
+        std::cout << v << "  ";
+      std::cout << "\n";
+
+      std::cout << "**********************************************\n\n";
+    }
   }
 }

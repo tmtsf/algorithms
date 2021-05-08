@@ -75,7 +75,7 @@ namespace cheetah
     }
   }
 
-  bool is_acyclic_undirected_graph(const cheetah::graph_ptr_t& g)
+  bool is_undirected_acyclic_graph(const cheetah::graph_ptr_t& g)
   {
     const auto& adj_list = g->adjacency_list();
     int n = g->number_of_vertices();
@@ -112,7 +112,7 @@ namespace cheetah
     }
   }
 
-  bool is_bipartite_undirected_graph(const cheetah::graph_ptr_t& g)
+  bool is_undirected_bipartite_graph(const cheetah::graph_ptr_t& g)
   {
     const auto& adj_list = g->adjacency_list();
     int n = g->number_of_vertices();

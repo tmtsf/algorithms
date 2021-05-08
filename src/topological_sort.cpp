@@ -4,11 +4,11 @@ namespace cheetah
 {
   namespace
   {
-    void is_dag_helper(const std::vector<cheetah::bag<edge>>& adj_list,
-                       int v,
-                       std::vector<bool>& visited,
-                       std::vector<bool>& on_stack,
-                       bool& result)
+    void dag_dfs(const std::vector<cheetah::bag<edge>>& adj_list,
+                 int v,
+                 std::vector<bool>& visited,
+                 std::vector<bool>& on_stack,
+                 bool& result)
     {
       on_stack[v] = true;
       visited[v] = true;
@@ -20,14 +20,14 @@ namespace cheetah
           return;
         }
         else
-          is_dag_helper(adj_list, e.vertex, visited, on_stack, result);
+          dag_dfs(adj_list, e.vertex, visited, on_stack, result);
       }
 
       on_stack[v] = false;
     }
   }
 
-  bool is_dag(const graph_ptr_t& g)
+  bool is_directed_acyclic_graph(const graph_ptr_t& g)
   {
     const auto& adj_list = g->adjacency_list();
     std::vector<bool> visited(g->number_of_vertices(), false);
@@ -36,7 +36,7 @@ namespace cheetah
     for (std::size_t i=0; i<adj_list.size(); ++i)
     {
       if (!visited[i])
-        is_dag_helper(adj_list, i, visited, on_stack, result);
+        dag_dfs(adj_list, i, visited, on_stack, result);
     }
 
     return result;
@@ -76,7 +76,7 @@ namespace cheetah
 
   std::vector<int> topological_sort(const graph_ptr_t& g)
   {
-    if (!is_dag(g))
+    if (!is_directed_acyclic_graph(g))
     {
       std::cout << "Cannot perform topological sort on a directed graph with cycle!\n";
       exit(1);

@@ -6,10 +6,10 @@ namespace cheetah
 {
   namespace
   {
-    void dfs(const std::vector<cheetah::bag<cheetah::edge>>& adj_list,
-            int source,
-            cheetah::bool_vec_t& visited,
-            cheetah::int_vec_t& prev)
+    void paths_dfs(const std::vector<cheetah::bag<cheetah::edge>>& adj_list,
+                   int source,
+                   cheetah::bool_vec_t& visited,
+                   cheetah::int_vec_t& prev)
     {
       visited[source] = true;
       for (const auto& e : adj_list[source])
@@ -17,7 +17,7 @@ namespace cheetah
         if (!visited[e.vertex])
         {
           prev[e.vertex] = source;
-          dfs(adj_list, e.vertex, visited, prev);
+          paths_dfs(adj_list, e.vertex, visited, prev);
         }
       }
     }
@@ -31,7 +31,7 @@ namespace cheetah
     cheetah::int_vec_t prev(n, -1);
 
     const auto& adj_list = g->adjacency_list();
-    dfs(adj_list, source, visited, prev);
+    paths_dfs(adj_list, source, visited, prev);
 
     cheetah::int_vec_coll_t result(n, cheetah::int_vec_t());
     for (int i = 0; i < n; ++i)
@@ -116,6 +116,39 @@ namespace cheetah
           result[i].push_back(vertex);
         }
       }
+    }
+
+    return result;
+  }
+
+  namespace
+  {
+    void connectivity_dfs(const std::vector<cheetah::bag<cheetah::edge>>& adj_list,
+                          int source,
+                          cheetah::bool_vec_t& visited)
+    {
+      visited[source] = true;
+      for (const auto& e : adj_list[source])
+      {
+        if (!visited[e.vertex])
+          connectivity_dfs(adj_list, e.vertex, visited);
+      }
+    }
+  }
+
+  cheetah::int_vec_t single_source_connectivity(const cheetah::graph_ptr_t& g,
+                                                int source)
+  {
+    const auto& adj_list = g->adjacency_list();
+    int n = g->number_of_vertices();
+    cheetah::bool_vec_t visited(n, false);
+    connectivity_dfs(adj_list, source, visited);
+
+    cheetah::int_vec_t result;
+    for (int i = 0; i < n; ++i)
+    {
+      if (visited[i])
+        result.push_back(i);
     }
 
     return result;

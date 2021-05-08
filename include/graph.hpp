@@ -59,8 +59,11 @@ namespace cheetah
   cheetah::int_vec_coll_t single_source_paths_bfs(const cheetah::graph_ptr_t& g,
                                                   int source);
 
+  cheetah::int_vec_t single_source_connectivity(const cheetah::graph_ptr_t& g,
+                                                int source);
+
   // Directed graph algorithms
-  bool is_dag(const graph_ptr_t& g);
+  bool is_directed_acyclic_graph(const graph_ptr_t& g);
 
   std::vector<int> topological_sort(const cheetah::graph_ptr_t& g);
 
@@ -94,7 +97,7 @@ namespace cheetah
 
   cheetah::dbl_mat_t floyd_warshall_shortest_paths(const cheetah::graph_ptr_t& g);
 
-  bool is_acyclic_undirected_graph(const cheetah::graph_ptr_t& g);
+  bool is_undirected_acyclic_graph(const cheetah::graph_ptr_t& g);
 
-  bool is_bipartite_undirected_graph(const cheetah::graph_ptr_t& g);
+  bool is_undirected_bipartite_graph(const cheetah::graph_ptr_t& g);
 }

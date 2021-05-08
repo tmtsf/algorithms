@@ -17,7 +17,7 @@ namespace cheetah
       for (const auto& p : edges)
         g->add_edge(p.first, p.second);
 
-      bool result = cheetah::is_acyclic_undirected_graph(g);
+      bool result = cheetah::is_undirected_acyclic_graph(g);
 
       std::cout << "The graph is ";
       if (result)
@@ -37,7 +37,7 @@ namespace cheetah
       for (const auto& p : edges)
         g->add_edge(p.first, p.second);
 
-      bool result = cheetah::is_bipartite_undirected_graph(g);
+      bool result = cheetah::is_undirected_bipartite_graph(g);
       std::cout << "The graph is ";
       if (!result)
         std::cout << "not ";

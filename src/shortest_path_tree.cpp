@@ -109,7 +109,7 @@ namespace cheetah
   std::vector<weighted_edge> acyclic_spt(const graph_ptr_t& g,
                                          int source)
   {
-    if (!cheetah::is_dag(g))
+    if (!cheetah::is_directed_acyclic_graph(g))
       throw("The supplied directed graph is not acyclic");
 
     int n = g->number_of_vertices();
