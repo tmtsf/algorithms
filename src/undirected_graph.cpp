@@ -55,4 +55,76 @@ namespace cheetah
   {
     return std::make_shared<undirected_graph>(n);
   }
+
+  namespace
+  {
+    void cycle_dfs(const std::vector<cheetah::bag<cheetah::edge>>& adj_list,
+                   cheetah::bool_vec_t& visited,
+                   int curr,
+                   int prev,
+                   bool& result)
+    {
+      visited[curr] = true;
+      for (const auto& e : adj_list[curr])
+      {
+        if (!visited[e.vertex])
+          cycle_dfs(adj_list, visited, e.vertex, curr, result);
+        else if (e.vertex != prev)
+          result = true;
+      }
+    }
+  }
+
+  bool is_acyclic_undirected_graph(const cheetah::graph_ptr_t& g)
+  {
+    const auto& adj_list = g->adjacency_list();
+    int n = g->number_of_vertices();
+    bool has_cycle(false);
+    cheetah::bool_vec_t visited(n, false);
+    for (int i = 0; i < n; ++i)
+    {
+      if (!visited[i])
+        cycle_dfs(adj_list, visited, i, i, has_cycle);
+    }
+
+    return !has_cycle;
+  }
+
+  namespace
+  {
+    void bipartite_dfs(const std::vector<cheetah::bag<cheetah::edge>>& adj_list,
+                       cheetah::bool_vec_t& visited,
+                       cheetah::bool_vec_t& color,
+                       int v,
+                       bool& result)
+    {
+      visited[v] = true;
+      for (const auto& e : adj_list[v])
+      {
+        if (!visited[e.vertex])
+        {
+          color[e.vertex] = !color[v];
+          bipartite_dfs(adj_list, visited, color, e.vertex, result);
+        }
+        else if (color[e.vertex] == color[v])
+          result = false;
+      }
+    }
+  }
+
+  bool is_bipartite_undirected_graph(const cheetah::graph_ptr_t& g)
+  {
+    const auto& adj_list = g->adjacency_list();
+    int n = g->number_of_vertices();
+    bool is_bipartite(true);
+    cheetah::bool_vec_t visited(n, false);
+    cheetah::bool_vec_t color(n, false);
+    for (int i = 0; i < n; ++i)
+    {
+      if (!visited[i])
+        bipartite_dfs(adj_list, visited, color, i, is_bipartite);
+    }
+
+    return is_bipartite;
+  }
 }
