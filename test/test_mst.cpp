@@ -6,7 +6,7 @@ namespace cheetah
 {
   namespace test
   {
-    TEST(test_lazy_prim_mst, MST)
+    TEST(test_undirected_graph, LazyPrimMST)
     {
       std::cout << "**********************************************\n";
       int n;
@@ -31,7 +31,7 @@ namespace cheetah
       std::cout << "**********************************************\n\n";
     }
 
-    TEST(test_eager_prim_mst, MST)
+    TEST(test_undirected_graph, EagerPrimMST)
     {
       std::cout << "**********************************************\n";
       int n;
@@ -56,7 +56,7 @@ namespace cheetah
       std::cout << "**********************************************\n\n";
     }
 
-    TEST(test_kruskal_mst, MST)
+    TEST(test_undirected_graph, KruskalMST)
     {
       std::cout << "**********************************************\n";
       int n;

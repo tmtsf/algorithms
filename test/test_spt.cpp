@@ -6,7 +6,7 @@ namespace cheetah
 {
   namespace test
   {
-    TEST(test_lazy_dijkstra_spt, SPT)
+    TEST(test_directed_graph, LazyDijkstraSPT)
     {
       std::cout << "**********************************************\n";
       int n;
@@ -39,7 +39,7 @@ namespace cheetah
       }
     }
 
-    TEST(test_eager_dijkstra_spt, SPT)
+    TEST(test_directed_graph, EagerDijkstraSPT)
     {
       std::cout << "**********************************************\n";
       int n;
@@ -72,7 +72,7 @@ namespace cheetah
       }
     }
 
-    TEST(test_acyclic_spt, SPT)
+    TEST(test_directed_graph, AcyclicSPT)
     {
       std::cout << "**********************************************\n";
       int n;
@@ -113,7 +113,7 @@ namespace cheetah
       std::cout << "**********************************************\n\n";
     }
 
-    TEST(test_bellman_ford_spt, SPT)
+    TEST(test_directed_graph, BellmanFordSPT)
     {
       std::cout << "**********************************************\n";
       std::vector<std::tuple<int, int, double>> edges;

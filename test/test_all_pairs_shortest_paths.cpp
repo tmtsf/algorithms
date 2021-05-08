@@ -6,7 +6,7 @@ namespace cheetah
 {
   namespace test
   {
-    TEST(test_floyd_warshall_shortest_paths, SP)
+    TEST(test_graph, FloydWarshallAllPairsShortestPaths)
     {
       std::cout << "**********************************************\n";
       std::vector<std::tuple<int, int, double>> edges;

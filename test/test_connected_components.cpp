@@ -36,7 +36,7 @@ namespace cheetah
     }
 
 
-    TEST(test_kosaraju_strong_components, Components)
+    TEST(test_directed_graph, KosarajuStrongComponents)
     {
       std::cout << "**********************************************\n";
       int n;
@@ -65,7 +65,7 @@ namespace cheetah
       std::cout << "**********************************************\n\n";
     }
 
-    TEST(test_tarjan_strong_components, Components)
+    TEST(test_directed_graph, TarjanStrongComponents)
     {
       std::cout << "**********************************************\n";
       int n;

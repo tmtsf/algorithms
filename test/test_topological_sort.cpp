@@ -6,7 +6,7 @@ namespace cheetah
 {
   namespace test
   {
-    TEST(test_topological_sort, Sort)
+    TEST(test_directed_graph, TopologicalSort)
     {
       std::cout << "**********************************************\n";
       std::vector<std::pair<int, int>> edges;
