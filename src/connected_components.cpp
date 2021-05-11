@@ -88,47 +88,44 @@ namespace cheetah
 
   namespace
   {
-    void tarjan_strong_components_helper(const std::vector<cheetah::bag<edge>>& adj_list,
-                                         int i,
-                                         cheetah::int_vec_t& stamps,
-                                         cheetah::int_vec_t& lows,
-                                         cheetah::stack<int>& s,
-                                         cheetah::bool_vec_t& on_stack,
-                                         int& stamp,
-                                         cheetah::int_vec_coll_t& components)
+    void tarjan_dfs(const std::vector<cheetah::bag<edge>>& adj_list,
+                    int n,
+                    int i,
+                    cheetah::bool_vec_t& visited,
+                    cheetah::int_vec_t& id,
+                    cheetah::int_vec_t& low,
+                    int& pre,
+                    int& count,
+                    cheetah::stack<int>& s)
     {
-      stamps[i] = stamp;
-      lows[i] = stamp;
-      on_stack[i] = true;
+      visited[i] = true;
+      low[i] = pre++;
+      int min = low[i];
       s.push(i);
       for (const auto& e : adj_list[i])
       {
-        int j = e.vertex;
-        if (!stamps[j])
-        {
-          tarjan_strong_components_helper(adj_list, j, stamps, lows, s, on_stack, ++stamp, components);
-          if (lows[j] < lows[i])
-            lows[i] = lows[j];
-        }
-        else if (on_stack[j] && stamps[j] < lows[i])
-        {
-          lows[i] = stamps[j];
-        }
+        if (!visited[e.vertex])
+          tarjan_dfs(adj_list, n, e.vertex, visited, id, low, pre, count, s);
+        if (low[e.vertex] < min)
+          min = low[e.vertex];
       }
 
-      if (lows[i] == stamps[i])
+      if (min < low[i])
       {
-        cheetah::int_vec_t component;
-        int t = 0;
-        while (t != i)
-        {
-          t = s.top();
-          s.pop();
-          on_stack[t] = false;
-          component.push_back(t);
-        }
-        components.push_back(component);
+        low[i] = min;
+        return;
       }
+
+      int w;
+      do
+      {
+        w = s.top();
+        s.pop();
+        id[w] = count;
+        low[w] = n;
+      } while (w != i);
+
+      ++count;
     }
   }
 
@@ -137,16 +134,23 @@ namespace cheetah
     const auto& adj_list = g->adjacency_list();
     int n = g->number_of_vertices();
 
-    cheetah::int_vec_t stamps(n, 0);
-    cheetah::int_vec_t lows(n, 0);
+    cheetah::bool_vec_t visited(n, false);
+    cheetah::int_vec_t id(n, 0);
+    cheetah::int_vec_t low(n, 0);
+    int pre{0};
+    int count{0};
     cheetah::stack<int> s;
-    cheetah::bool_vec_t on_stack(n, false);
-    int count = 0;
+    for (int i = 0; i < n; ++i)
+    {
+      if (!visited[i])
+        tarjan_dfs(adj_list, n, i, visited, id, low, pre, count, s);
+    }
 
-    cheetah::int_vec_coll_t results;
-    for (int i=0; i<n; ++i)
-      if (!stamps[i])
-        tarjan_strong_components_helper(adj_list, i, stamps, lows, s, on_stack, count, results);
+    cheetah::int_vec_coll_t results(count, cheetah::int_vec_t());
+    for (int i = 0; i < n; ++i)
+    {
+      results[id[i]].push_back(i);
+    }
 
     return results;
   }
