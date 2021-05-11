@@ -41,16 +41,11 @@ namespace cheetah
         if (distance[vertex] > distance[i] + weight)
         {
           distance[vertex] = distance[i] + weight;
-          if (pq.contains(vertex))
-          {
-            pq.change(vertex, {i, vertex, weight});
-          }
-          else
-          {
-            pq.push(vertex, {i, vertex, weight});
-          }
-
           spt[vertex] = {i, vertex, weight};
+          if (pq.contains(vertex))
+            pq.change(vertex, {i, vertex, weight});
+          else
+            pq.push(vertex, {i, vertex, weight});
         }
       }
     }
@@ -149,33 +144,47 @@ namespace cheetah
     std::vector<double> distance(n, DBL_MAX);
     std::vector<bool> on_queue(n, false);
     cheetah:queue<int> q;
-    std::vector<cheetah::weighted_edge> spt(n);
+    std::vector<cheetah::weighted_edge> spt(n, {-1, -1, 0.0});
     int count = 0;
+    bool negative_cycle(false);
 
     distance[source] = 0.0;
     q.push(source);
     on_queue[source] = true;
     spt[source] = {-1, source, 0.0};
-    while (!q.empty())
+    while (!q.empty() && !negative_cycle)
     {
       int t = q.front();
       q.pop();
+      on_queue[t] = false;
       for (const auto& e : adj_list[t])
       {
         int w = e.vertex;
         if (distance[w] > distance[t] + e.weight)
         {
           distance[w] = distance[t] + e.weight;
+          spt[w] = {t, w, e.weight};
+          std::cout << t << "->" << w << "  " << e.weight << "\n";
           if (!on_queue[w])
           {
             q.push(w);
             on_queue[w] = true;
           }
-
-          spt[w] = {t, w, e.weight};
         }
 
-        ++count;
+        if (count++ % n == 0)
+        {
+          graph_ptr_t cycle = cheetah::graph::make_directed_graph(n);
+          for (const auto& we : spt)
+          {
+            if (std::get<0>(we) != -1)
+              cycle->add_edge(std::get<0>(we), std::get<1>(we), std::get<2>(we));
+          }
+
+          negative_cycle = !cheetah::is_directed_acyclic_graph(cycle);
+          if (negative_cycle)
+            cycle->print();
+        }
       }
     }
 

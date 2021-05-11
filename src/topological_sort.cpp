@@ -19,7 +19,7 @@ namespace cheetah
           result = false;
           return;
         }
-        else
+        else if (!visited[e.vertex])
           dag_dfs(adj_list, e.vertex, visited, on_stack, result);
       }
 

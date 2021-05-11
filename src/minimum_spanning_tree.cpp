@@ -41,13 +41,11 @@ namespace cheetah
         if (weight < distance[vertex])
         {
           distance[vertex] = weight;
+          mst[vertex] = {i, vertex, weight};
           if (pq.contains(vertex))
             pq.change(vertex, {i, vertex, weight});
           else
-          {
             pq.push(vertex, {i, vertex, weight});
-          }
-          mst[vertex] = {i, vertex, weight};
         }
       }
     }
