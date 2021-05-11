@@ -132,6 +132,64 @@ namespace cheetah
       std::vector<int> id;
       std::vector<int> size;
     };
+
+    struct weighted_path_compressed_quick_union_union_find : public union_find
+    {
+      weighted_path_compressed_quick_union_union_find(int n_) :
+        n(n_)
+      {
+        id.resize(n);
+        std::iota(id.begin(),
+                  id.end(),
+                  0);
+
+        size.resize(n, 1);
+      }
+    public:
+      virtual void join(int p, int q)
+      {
+        int p_id = find(p);
+        int q_id = find(q);
+
+        if (p_id == q_id)
+          return;
+
+        if (size[p_id] < size[q_id])
+        {
+          id[p_id] = q_id;
+          size[q_id] += size[p_id];
+        }
+        else
+        {
+          id[q_id] = p_id;
+          size[p_id] += size[q_id];
+        }
+
+        --n;
+      }
+      virtual int find(int p) const
+      {
+        int root = p;
+        while (id[root] != root)
+          root = id[root];
+
+        while (id[p] != p)
+        {
+          p = id[p];
+          id[p] = root;
+        }
+
+        return root;
+      }
+      virtual int count(void) const
+      {
+        return n;
+      }
+    private:
+      int n;
+      mutable std::vector<int> id;
+      std::vector<int> size;
+    };
   }
 
   cheetah::union_find_ptr_t union_find::make_quick_find(int n)
@@ -147,5 +205,10 @@ namespace cheetah
   cheetah::union_find_ptr_t union_find::make_weighted_quick_union(int n)
   {
     return std::make_shared<weighted_quick_union_union_find>(n);
+  }
+
+  cheetah::union_find_ptr_t union_find::make_weighted_path_compressed_quick_union(int n)
+  {
+    return std::make_shared<weighted_path_compressed_quick_union_union_find>(n);
   }
 }

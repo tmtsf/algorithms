@@ -110,5 +110,20 @@ namespace cheetah
       std::cout << "There are " << uf->count() << " connected components.\n";
       std::cout << "**********************************************\n\n";
     }
+
+    TEST(test_weighted_path_compressed_quick_union, Large)
+    {
+      std::cout << "**********************************************\n";
+      std::vector<std::pair<int, int>> edges;
+      int n;
+      cheetah::util::parse_union_find_data("data/large_union_find.txt", edges, n);
+
+      cheetah::union_find_ptr_t uf = cheetah::union_find::make_weighted_path_compressed_quick_union(n);
+      for (const auto& edge : edges)
+        uf->join(edge.first, edge.second);
+
+      std::cout << "There are " << uf->count() << " connected components.\n";
+      std::cout << "**********************************************\n\n";
+    }
   }
 }

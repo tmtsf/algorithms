@@ -20,5 +20,6 @@ namespace cheetah
     static cheetah::union_find_ptr_t make_quick_find(int n);
     static cheetah::union_find_ptr_t make_quick_union(int n);
     static cheetah::union_find_ptr_t make_weighted_quick_union(int n);
+    static cheetah::union_find_ptr_t make_weighted_path_compressed_quick_union(int n);
   };
 }
