@@ -11,7 +11,7 @@ namespace cheetah
       std::cout << "**********************************************\n";
       int n;
       std::vector<std::tuple<int, int, double>> edges;
-      util::parse_weighted_graph("data/tiny_edge_weighted_graph.txt", edges, n);
+      util::parse_weighted_graph("../data/tiny_edge_weighted_graph.txt", edges, n);
 
       graph_ptr_t g = cheetah::graph::make_undirected_graph(n);
       for (const auto& p : edges)
@@ -36,7 +36,7 @@ namespace cheetah
       std::cout << "**********************************************\n";
       int n;
       std::vector<std::tuple<int, int, double>> edges;
-      util::parse_weighted_graph("data/tiny_edge_weighted_graph.txt", edges, n);
+      util::parse_weighted_graph("../data/tiny_edge_weighted_graph.txt", edges, n);
 
       graph_ptr_t g = cheetah::graph::make_undirected_graph(n);
       for (const auto& p : edges)
@@ -61,7 +61,7 @@ namespace cheetah
       std::cout << "**********************************************\n";
       int n;
       std::vector<std::tuple<int, int, double>> edges;
-      util::parse_weighted_graph("data/tiny_edge_weighted_graph.txt", edges, n);
+      util::parse_weighted_graph("../data/tiny_edge_weighted_graph.txt", edges, n);
 
       graph_ptr_t g = cheetah::graph::make_undirected_graph(n);
       for (const auto& p : edges)

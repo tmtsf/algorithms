@@ -12,7 +12,7 @@ namespace cheetah
       std::vector<std::pair<int, int>> edges;
       std::unordered_map<std::string, int> lookup;
       std::vector<std::string> symbols;
-      cheetah::util::parse_unweighted_graph("data/jobs.txt", "/", edges, lookup, symbols);
+      cheetah::util::parse_unweighted_graph("../data/jobs.txt", "/", edges, lookup, symbols);
 
       graph_ptr_t g = cheetah::graph::make_directed_graph(symbols.size());
       for (const auto& p : edges)
