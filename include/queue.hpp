@@ -11,12 +11,8 @@ namespace cheetah
     { }
     ~queue()
     {
-      while (first)
-      {
-        node<T>* curr = first;
-        first = first->next;
-        delete curr;
-      }
+      while (!empty())
+        pop();
     }
     void push(const T& elem)
     {

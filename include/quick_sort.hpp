@@ -18,7 +18,7 @@ namespace cheetah
       {
         while (v[i] < first)
         {
-          if (i == hi)
+          if (i == hi - 1)
             break;
 
           ++i;
@@ -68,7 +68,7 @@ namespace cheetah
       {
         while (comp(v[i], first))
         {
-          if (i == hi)
+          if (i == hi - 1)
             break;
 
           ++i;
