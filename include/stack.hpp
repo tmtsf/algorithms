@@ -38,8 +38,10 @@ namespace cheetah
     }
     void pop(void)
     {
+      node<T>* temp = first;
       first = first->next;
       --N;
+      delete temp;
     }
     int size(void)
     {
