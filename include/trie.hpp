@@ -10,7 +10,7 @@ namespace cheetah
   private:
     struct node
     {
-      node(void)
+      node(void) : value(std::nullopt)
       { }
 
       node(const Value& value_) : value(value_)
@@ -19,7 +19,7 @@ namespace cheetah
       std::optional<Value> value;
 
       static const int R = 256;
-      node* children[R];
+      node* children[R] = {nullptr};
     };
   public:
     trie(void) : root(nullptr)
@@ -36,8 +36,11 @@ namespace cheetah
     {
       for (node* child : tn->children)
       {
-        if (child)
+        if (child && child->value.has_value())
+        {
+          std::cout << child->value.value() << std::endl;
           erase(child);
+        }
       }
 
       delete tn;
